@@ -77,3 +77,40 @@ Para fazer isso , digitar o comando : python manage.py createsuperuser
 * Depois rodar o comando python manage.py runserver
 
 
+* Serializador -> Serve para fazer a conversão de dados complexos em um datatype python.
+Utilizar o ModelSerializer 
+
+* Criar um arquivo dentro da pasta escola chamado serializers.py 
+    No arquivo codar :   from rest_framework import serializers
+from escola.models import Estudante, Curso
+
+class EstudanteSerializer(serializers.ModelSerializer):
+    class meta:
+        model = Estudante
+        fields = ['id','nome','email','cpf','data_nascimento','celular']
+
+
+class CursoSerializer(serializers.ModelSerializer):
+    class meta:
+        model = Curso
+        fields = '__all__'
+
+
+No terminal importar
+
+    from escola.models import Estudante
+    from escola.serializers import EstudanteSerializer
+    querySet =  Estudante.objects.all()
+    querySet
+    serializador = EstudanteSerializer(querySet, many = True)
+
+
+* Construir view set
+
+No arquivo views.py inserir : 
+
+Importar as models Estudante e Curso -> from escola.models import Estudante, Curso
+Importar cada serializer -> from escola.serializers import EstudanteSerializer, CursoSerializer
+from rest_frameworks import viewsets
+
+
