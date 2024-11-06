@@ -107,6 +107,8 @@ No terminal importar
 
 * Construir view set
 
+Agrupado de views que contém operações CRUD. Ler, editar, criar
+
 No arquivo views.py inserir : 
 
 Importar as models Estudante e Curso -> from escola.models import Estudante, Curso
@@ -114,3 +116,14 @@ Importar cada serializer -> from escola.serializers import EstudanteSerializer, 
 from rest_frameworks import viewsets
 
 
+Criar a classe EstudanteViewSet(viewsets.ModelViewSet):
+    queryset = Estudante.objects.all()
+    serializer_class = EstudanteSerializer
+
+
+    CursoViewSet(viewsets.ModelViewSet):
+    queryset = Curso.objects.all()
+    serializer_class = CursoSerializer
+
+
+* Routers - > Criar um objeto da classe Router que armazenará todos os objetos da rota
