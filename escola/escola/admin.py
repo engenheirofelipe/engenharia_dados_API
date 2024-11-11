@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from escola.models import Estudante,Curso
+from escola.models import Estudante,Curso, Matricula
 
 class Estudantes(admin.ModelAdmin):
     list_display = ('id','nome','email','cpf','data_nascimento','celular')
@@ -16,3 +16,9 @@ class Cursos(admin.ModelAdmin):
     search_fields = ('codigo',) # Pesquisar
 
 admin.site.register(Curso,Cursos)
+
+class Matriculas(admin.ModelAdmin):
+    list_display = ('id', 'estudante', 'curso', 'periodo')
+    list_display_links = ('id',)
+
+admin.site.register(Matricula,Matriculas)

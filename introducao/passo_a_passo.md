@@ -127,3 +127,22 @@ Criar a classe EstudanteViewSet(viewsets.ModelViewSet):
 
 
 * Routers - > Criar um objeto da classe Router que armazenará todos os objetos da rota
+
+*   Construir a model Matricula. 
+
+class Matricula(models.Model):
+
+    PERIODO = (
+        ('M', 'Matutino'),
+        ('V', 'Vespertino'),
+        ('N', 'Noturno')
+    )
+
+    estudante = models.ForeignKey(Estudante, on_delete = models.CASCADE)
+    curso = models.ForeignKey(Curso, on_delete = models.CASCADE)
+    peridodo =  models.CharField(max_length = 1, choices = PERIODO , blank = False, null = False, default = 'B')
+
+    Depois rodar o comando python manage.py make migrations depois python manage.py migrate
+
+
+* Agora que a model de matricula está feita, criar a serializer dela.
